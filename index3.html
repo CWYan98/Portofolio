@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Wing Yan — AI & Software Engineer</title>
+    
+    <!-- Google Fonts voor Claude-stijl typografie -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #FBF9F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #1F1E1C;
+            --text-secondary: #575653;
+            --accent-color: #CC6B49;
+            --accent-hover: #B55938;
+            --border-color: #E8E4DC;
+            --tag-bg: #F0ECE1;
+            
+            --success-bg: #EAF3ED;
+            --success-color: #2E7D32;
+            --error-bg: #FDF3F2;
+            --error-color: #C62828;
+
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            margin-left: 16px;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Sectie */
+        .hero {
+            padding: 80px 0 40px;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--tag-bg);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Over Mij Sectie */
+        .about-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .about-section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .about-section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        /* Sectie Titels */
+        .section-header {
+            margin: 60px 0 32px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        /* Projecten Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            border-color: #D3CDC0;
+            box-shadow: 0 8px 24px rgba(31, 30, 28, 0.04);
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* GEANIMEERDE PROCES SECTIE */
+        .animation-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .animation-section h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .animation-intro {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 0.98rem;
+        }
+
+        .animated-pipeline {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            gap: 16px;
+        }
+
+        .pipeline-node {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px 16px;
+            text-align: center;
+            flex: 1;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .pipeline-node .icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .pipeline-node h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .pipeline-node span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .pipeline-connector {
+            flex: 0.5;
+            height: 4px;
+            background: var(--border-color);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .pipeline-connector::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: flowAnimation 2s infinite linear;
+        }
+
+        @keyframes flowAnimation {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .pulse-badge {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(204, 107, 73, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(204, 107, 73, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(204, 107, 73, 0); }
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .step-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .step-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .step-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* INTERACTIEVE DEMO */
+        .demo-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .demo-section h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .demo-section .demo-intro {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 0.98rem;
+        }
+
+        .demo-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn-demo {
+            background-color: var(--accent-color);
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-demo:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .demo-result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .demo-result.success {
+            background-color: var(--success-bg);
+            color: var(--success-color);
+            border: 1px solid #C8E6C9;
+            display: block;
+        }
+
+        .demo-result.error {
+            background-color: var(--error-bg);
+            color: var(--error-color);
+            border: 1px solid #FFCDD2;
+            display: block;
+        }
+
+        .demo-result h4 {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* Contact Sectie */
+        .contact-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .animated-pipeline {
+                flex-direction: column;
+            }
+            .pipeline-connector {
+                width: 4px;
+                height: 30px;
+            }
+            .pipeline-connector::after {
+                animation: flowVertical 2s infinite linear;
+            }
+            @keyframes flowVertical {
+                0% { top: -100%; left: 0; }
+                100% { top: 100%; left: 0; }
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigatie -->
+        <header>
+            <a href="#" class="logo">Chi Wing Yan</a>
+            <nav>
+                <a href="#over-mij">Over mij</a>
+                <a href="#projecten">Projecten</a>
+                <a href="#proces">Hoe het werkt</a>
+                <a href="#demo">Live Demo</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Sectie -->
+        <section class="hero">
+            <span class="hero-badge">AI & Software Engineer — Creative Problem Solver</span>
+            <h1>Slimme software-oplossingen voor bedrijfsprocessen en performance.</h1>
+            <p>
+                Hallo, ik ben Chi Wing Yan. Ik bedenk en bouw doelgerichte toepassingen die complexe taken automatiseren, fouten verminderen en technische prestaties inzichtelijk maken.
+            </p>
+        </section>
+
+        <!-- Over Mij Sectie -->
+        <section id="over-mij" class="about-section">
+            <h2>Over Mij</h2>
+            <p>
+                Als AI-programmer en <em>creative problem solver</em> ben ik gespecialiseerd in het bedenken en bouwen van slimme software-oplossingen. Vanuit een scherp oog voor bedrijfsprocessen vertaal ik complexe uitdagingen—zoals foutieve pakbonnen en facturen—naar geautomatiseerde, autonome systemen. Ik haal er energie uit om vanaf een blanco scherm concepten tot leven te wekken en software te creëren die bedrijven direct vooruithelpt.
+            </p>
+        </section>
+
+        <!-- Projecten Sectie -->
+        <section id="projecten">
+            <div class="section-header">
+                <h2 class="section-title">Gerealiseerde Projecten</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Pakbon & Factuur Controller -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-category">AI & B2B Automatisering</div>
+                        <h3>Pakbon & Factuur Controle Software</h3>
+                        <p>
+                            Een geautomatiseerd systeem ontwikkeld voor bedrijven om menselijke fouten op pakbonnen en facturen te detecteren. Het systeem koppelt bestellingen direct met inkomende e-mails en voert automatische verificaties uit.
+                        </p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">AI Automatisering</span>
+                        <span class="tag">Factuurcontrole</span>
+                        <span class="tag">E-mail Koppeling</span>
+                        <span class="tag">Data Validatie</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: GTA Hardware Checker -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-category">Gaming & System Analysis</div>
+                        <h3>GTA Hardware Checker</h3>
+                        <p>
+                            Een geavanceerde hardware-analyseapplicatie die systeemspecificaties realtime scant en toetst aan de complexe vereisten van moderne titels zoals Grand Theft Auto. De software berekent hardware-compatibiliteit, voorspelt performance-knelpunten en biedt gebruikers diepgaand inzicht in hun systeemcapaciteit.
+                        </p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Hardware Analyse</span>
+                        <span class="tag">Performance Tool</span>
+                        <span class="tag">System Requirements</span>
+                        <span class="tag">Benchmarking</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GEANIMEERDE PROCES SECTIE -->
+        <section id="proces" class="animation-section">
+            <h3>Geautomatiseerde Workflow</h3>
+            <p class="animation-intro">Live visualisatie van de geautomatiseerde gegevensstroom tussen e-mail, controle en rapportage.</p>
+            
+            <div class="animated-pipeline">
+                <div class="pipeline-node">
+                    <span class="icon">📄</span>
+                    <h5>Inkomende Mail</h5>
+                    <span>Factuur & Pakbon</span>
+                </div>
+                
+                <div class="pipeline-connector"></div>
+
+                <div class="pipeline-node">
+                    <span class="icon">⚡</span>
+                    <h5><span class="pulse-badge"></span>AI Match Engine</h5>
+                    <span>Vergelijkt met Order</span>
+                </div>
+
+                <div class="pipeline-connector"></div>
+
+                <div class="pipeline-node">
+                    <span class="icon">📩</span>
+                    <h5>Melding & Mail</h5>
+                    <span>Status of Correctie</span>
+                </div>
+            </div>
+
+            <div class="workflow-steps">
+                <div class="step-card">
+                    <span class="step-number">Stap 1</span>
+                    <h4>Document Inlezen</h4>
+                    <p>Inkomende bestanden en e-mailbijlagen worden automatisch uitgewisseld en uitgelezen.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">Stap 2</span>
+                    <h4>Directe Controle</h4>
+                    <p>Prijzen, aantallen en artikelnummers worden realtime vergeleken met het systeem.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">Stap 3</span>
+                    <h4>Automatische Actie</h4>
+                    <p>Bij afwijkingen wordt direct een e-mailconcept of waarschuwing klaargezet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE INTERACTIEVE AUTOMATISATIE DEMO -->
+        <section id="demo" class="demo-section">
+            <h3>Probeer de Pakbon & Factuur Automatisering</h3>
+            <p class="demo-intro">Test hieronder live hoe de software een factuur toetst aan de hand van de ingevoerde data.</p>
+            
+            <div class="demo-form-grid">
+                <div class="form-group">
+                    <label for="orderBedrag">Bestelling (Systeembedrag)</label>
+                    <input type="number" id="orderBedrag" value="1250" placeholder="Bijv. 1250">
+                </div>
+                <div class="form-group">
+                    <label for="factuurBedrag">Factuurbedrag (Leverancier)</label>
+                    <input type="number" id="factuurBedrag" value="1350" placeholder="Bijv. 1350">
+                </div>
+                <div class="form-group">
+                    <label for="statusPakbon">Pakbon Verificatie</label>
+                    <select id="statusPakbon">
+                        <option value="compleet">Alle artikelen geleverd</option>
+                        <option value="missend">Artikelen ontbreken op pakbon</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-demo" onclick="voerCheckUit()">Voer Automatische Check Uit</button>
+
+            <div id="demoResult" class="demo-result"></div>
+        </section>
+
+        <!-- Contact Sectie -->
+        <section id="contact" class="contact-section">
+            <h2>Samenwerken of meer weten?</h2>
+            <p>
+                Heb je een vraag over mijn projecten, of zoek je een ontwikkelaar die je bedrijfsprocessen kan automatiseren?
+            </p>
+            <a href="mailto:chi.wing98@hotmail.com" class="btn-primary">Stuur een e-mail</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; Chi Wing Yan. Alle rechten voorbehouden.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript voor de simulatie -->
+    <script>
+        function voerCheckUit() {
+            const order = parseFloat(document.getElementById('orderBedrag').value) || 0;
+            const factuur = parseFloat(document.getElementById('factuurBedrag').value) || 0;
+            const pakbonStatus = document.getElementById('statusPakbon').value;
+            const resultBox = document.getElementById('demoResult');
+
+            resultBox.className = "demo-result";
+
+            let fouten = [];
+
+            if (order !== factuur) {
+                const verschil = Math.abs(order - factuur);
+                fouten.push(`Prijsverschil gedetecteerd: Factuur wijkt €${verschil},- af van de originele bestelling.`);
+            }
+
+            if (pakbonStatus === 'missend') {
+                fouten.push(`Pakbon-discrepantie: Niet alle bestelde artikelen staan afgetekend op de pakbon.`);
+            }
+
+            if (fouten.length > 0) {
+                resultBox.classList.add('error');
+                let html = `<h4>⚠️ Fout gedetecteerd door automatiseringssoftware:</h4><ul>`;
+                fouten.forEach(f => {
+                    html += `<li>${f}</li>`;
+                });
+                html += `</ul><p style="margin-top: 10px; font-size: 0.85rem; font-style: italic;">➔ Actie ondernomen: Automatische waarschuwingsmail verzonden naar inkoop & leverancier.</p>`;
+                resultBox.innerHTML = html;
+            } else {
+                resultBox.classList.add('success');
+                resultBox.innerHTML = `<h4>✅ Factuur & Pakbon goedgekeurd!</h4><p>Geen afwijkingen gevonden tussen bestelling, pakbon en factuur. Document doorgezet naar de administratie.</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
